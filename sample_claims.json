@@ -1,0 +1,122 @@
+[
+  {
+    "id": "T01",
+    "text": "My car was hit from behind yesterday. Rear bumper damaged. FIR filed and photos available.",
+    "expected_type": "Motor - Accident",
+    "expect_conflict": false
+  },
+  {
+    "id": "T02",
+    "text": "Claim form: Accident date = 12 Sept 2026. Policy number: POL-2048.\nEmail: Accident date = 13 Sept 2026. Photos available.",
+    "expected_type": "Unknown / needs review",
+    "expect_conflict": true
+  },
+  {
+    "id": "T03",
+    "text": "My house roof was damaged in a storm. Photos available.",
+    "expected_type": "Property",
+    "expect_conflict": false
+  },
+  {
+    "id": "T04",
+    "text": "I was hospitalized for an illness and have medical bills.",
+    "expected_type": "Health",
+    "expect_conflict": false
+  },
+  {
+    "id": "T05",
+    "text": "My suitcase was lost during my flight. Airline report available.",
+    "expected_type": "Travel",
+    "expect_conflict": false
+  },
+  {
+    "id": "T06",
+    "text": "A motorcycle hit my parked car; left door damaged. Police report filed.",
+    "expected_type": "Motor - Accident",
+    "expect_conflict": false
+  },
+  {
+    "id": "T07",
+    "text": "There was a fire in my kitchen and the cabinets are damaged.",
+    "expected_type": "Property",
+    "expect_conflict": false
+  },
+  {
+    "id": "T08",
+    "text": "My phone was stolen while travelling.",
+    "expected_type": "Travel",
+    "expect_conflict": false
+  },
+  {
+    "id": "T09",
+    "text": "I slipped and fell at a shop and went to hospital.",
+    "expected_type": "Health",
+    "expect_conflict": false
+  },
+  {
+    "id": "T10",
+    "text": "Claim form: Accident date = 2026-09-12. Email: Accident date = 2026-09-12. Car collision at 8 pm.",
+    "expected_type": "Motor - Accident",
+    "expect_conflict": false
+  },
+  {
+    "id": "T11",
+    "text": "My vehicle windshield cracked after a stone hit it. Photos available.",
+    "expected_type": "Motor - Accident",
+    "expect_conflict": false
+  },
+  {
+    "id": "T12",
+    "text": "Water from a flood damaged my house floor.",
+    "expected_type": "Property",
+    "expect_conflict": false
+  },
+  {
+    "id": "T13",
+    "text": "I need reimbursement for surgery. Hospital bills and medical report available.",
+    "expected_type": "Health",
+    "expect_conflict": false
+  },
+  {
+    "id": "T14",
+    "text": "The car was sideswiped on 14 Sept 2026. Policy number: MOTOR-8877. Repair estimate available.",
+    "expected_type": "Motor - Accident",
+    "expect_conflict": false
+  },
+  {
+    "id": "T15",
+    "text": "Claim form: Location = Park Street. Email: Location = Salt Lake. Vehicle collision; photos available.",
+    "expected_type": "Motor - Accident",
+    "expect_conflict": false
+  },
+  {
+    "id": "T16",
+    "text": "My luggage was delayed on a trip and I have receipts.",
+    "expected_type": "Travel",
+    "expect_conflict": false
+  },
+  {
+    "id": "T17",
+    "text": "My car boot and rear bumper were damaged in a rear-end collision. Other driver's insurance details available.",
+    "expected_type": "Motor - Accident",
+    "expect_conflict": false
+  },
+  {
+    "id": "T18",
+    "text": "A pipe burst and damaged the ceiling in my house. Policy number: HOME-1234.",
+    "expected_type": "Property",
+    "expect_conflict": false
+  },
+  {
+    "id": "T19",
+    "text": "I was diagnosed with an illness on 3 Oct 2026 and have a hospital bill.",
+    "expected_type": "Health",
+    "expect_conflict": false
+  },
+  {
+    "id": "T20",
+    "text": "Claim form: Accident date = 12 Sept 2026. Email: Accident date = 13 Sept 2026. Location: Park Street.",
+    "expected_type": "Unknown / needs review",
+    "expect_conflict": true
+  }
+]

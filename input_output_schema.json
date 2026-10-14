@@ -1,0 +1,74 @@
+{
+  "input_schema": {
+    "type": "object",
+    "required": [
+      "claim_text"
+    ],
+    "properties": {
+      "claim_text": {
+        "type": "string",
+        "description": "Synthetic unstructured claim description. Multiple sources may be labelled Claim form:, Email:, Incident report:, or Customer description:"
+      }
+    }
+  },
+  "output_schema": {
+    "type": "object",
+    "required": [
+      "claim_type",
+      "incident_type",
+      "incident_details",
+      "documents_available",
+      "extracted_fields",
+      "missing_information",
+      "conflicts",
+      "triage_category",
+      "next_steps_recommended_by_system",
+      "evidence_boundary"
+    ],
+    "properties": {
+      "claim_type": {
+        "type": "string"
+      },
+      "incident_type": {
+        "type": "string"
+      },
+      "incident_details": {
+        "type": "object"
+      },
+      "documents_available": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "extracted_fields": {
+        "type": "object",
+        "description": "Unprovided fields should be null."
+      },
+      "missing_information": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "conflicts": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "triage_category": {
+        "type": "string"
+      },
+      "next_steps_recommended_by_system": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "evidence_boundary": {
+        "type": "object"
+      }
+    }
+  }
+}
