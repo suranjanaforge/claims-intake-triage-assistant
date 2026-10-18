@@ -1,0 +1,233 @@
+
+/* =========================================
+   CLAIMPILOT — GLOBAL DESIGN SYSTEM
+   ========================================= */
+
+:root {
+    --navy: #142544;
+    --navy-light: #203c68;
+    --blue: #3978f6;
+    --blue-hover: #2863d9;
+    --background: #f4f7fc;
+    --surface: #ffffff;
+    --text: #172746;
+    --muted: #66758c;
+    --border: #e0e7f1;
+    --success: #16794b;
+    --danger: #b42332;
+}
+
+/* Main application */
+.stApp,
+[data-testid="stAppViewContainer"],
+[data-testid="stMain"],
+section.main {
+    background: var(--background) !important;
+    color: var(--text) !important;
+    font-family: "Segoe UI", Arial, sans-serif !important;
+}
+
+.block-container {
+    max-width: 1240px;
+    padding: 1.8rem 2rem 3rem;
+}
+
+/* Top toolbar */
+[data-testid="stHeader"] {
+    background: var(--background) !important;
+}
+
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background: var(--navy) !important;
+    border-right: 1px solid #263d61;
+}
+
+[data-testid="stSidebar"] * {
+    color: #eef4ff !important;
+}
+
+[data-testid="stSidebar"] input {
+    background: #ffffff !important;
+    color: var(--text) !important;
+    border: 1px solid #d5deec !important;
+    border-radius: 9px !important;
+}
+
+/* Normal text: readable dark colour */
+.main .stMarkdown,
+.main .stMarkdown p,
+.main .stMarkdown li,
+.main .stMarkdown label,
+.main [data-testid="stCaptionContainer"] {
+    color: var(--text) !important;
+}
+
+.main h1,
+.main h2,
+.main h3,
+.main h4 {
+    color: var(--text) !important;
+    font-weight: 700 !important;
+}
+
+/* ClaimPilot brand */
+.brand {
+    color: var(--navy) !important;
+    font-size: 1.65rem;
+    font-weight: 800;
+    letter-spacing: -0.7px;
+    margin-bottom: 0.5rem;
+}
+
+.brand span {
+    color: var(--blue) !important;
+}
+
+/* Main hero banner */
+.hero {
+    background: linear-gradient(
+        120deg,
+        #142544 0%,
+        #234a83 60%,
+        #3978f6 100%
+    ) !important;
+    padding: 2rem;
+    border-radius: 18px;
+    margin: 0.8rem 0 1.5rem;
+    box-shadow: 0 8px 24px rgba(20, 37, 68, 0.12);
+}
+
+.hero h1 {
+    color: #ffffff !important;
+    font-size: 1.9rem;
+    line-height: 1.3;
+    margin: 0 0 0.7rem;
+}
+
+.hero p {
+    color: #e4edff !important;
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* Section headings */
+.section {
+    color: var(--navy) !important;
+    font-size: 1.2rem;
+    font-weight: 750;
+    margin: 1.4rem 0 0.7rem;
+}
+
+/* Metric cards */
+[data-testid="stMetric"] {
+    background: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 14px !important;
+    padding: 1rem !important;
+    box-shadow: 0 3px 10px rgba(20, 37, 68, 0.035);
+}
+
+[data-testid="stMetricLabel"],
+[data-testid="stMetricLabel"] p,
+[data-testid="stMetricValue"],
+[data-testid="stMetricDelta"] {
+    color: var(--text) !important;
+}
+
+/* Input areas */
+[data-testid="stTextArea"] textarea,
+[data-testid="stTextInput"] input,
+[data-testid="stNumberInput"] input {
+    background: #ffffff !important;
+    color: var(--text) !important;
+    border: 1px solid #ccd7e7 !important;
+    border-radius: 11px !important;
+    font-size: 0.98rem !important;
+}
+
+[data-testid="stTextArea"] textarea {
+    line-height: 1.65 !important;
+}
+
+[data-testid="stTextArea"] textarea::placeholder,
+input::placeholder {
+    color: #75839a !important;
+    opacity: 1 !important;
+}
+
+/* Buttons */
+.stButton button,
+.stDownloadButton button {
+    border-radius: 10px !important;
+    font-weight: 650 !important;
+    min-height: 2.65rem;
+    transition: all 0.15s ease;
+}
+
+.stButton button[kind="primary"] {
+    background: var(--blue) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--blue) !important;
+}
+
+.stButton button[kind="primary"]:hover {
+    background: var(--blue-hover) !important;
+    border-color: var(--blue-hover) !important;
+}
+
+.stButton button:not([kind="primary"]),
+.stDownloadButton button {
+    background: #ffffff !important;
+    color: var(--navy) !important;
+    border: 1px solid #d4deed !important;
+}
+
+.stButton button:not([kind="primary"]):hover,
+.stDownloadButton button:hover {
+    border-color: var(--blue) !important;
+    color: var(--blue) !important;
+}
+
+/* Tabs */
+[data-testid="stTabs"] [role="tab"] {
+    color: var(--muted) !important;
+    font-weight: 600 !important;
+}
+
+[data-testid="stTabs"] [role="tab"][aria-selected="true"] {
+    color: var(--blue) !important;
+}
+
+/* Alerts */
+[data-testid="stAlert"] {
+    border-radius: 12px !important;
+}
+
+/* JSON and code panels */
+[data-testid="stJson"],
+.stCode,
+pre {
+    border-radius: 10px !important;
+}
+
+/* Divider */
+hr {
+    border-color: var(--border) !important;
+}
+
+/* Smaller screens */
+@media (max-width: 768px) {
+    .block-container {
+        padding: 1rem 1rem 2rem;
+    }
+
+    .hero {
+        padding: 1.3rem;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+}
