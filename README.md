@@ -1,68 +1,243 @@
-# claims-intake-triage-assistant
-# Claims Intake & Triage Assistant
+# ClaimPilot – AI-Powered Claims Intake & Triage Assistant
 
-A small Streamlit demonstration that converts unstructured, **synthetic** claim descriptions into a structured record, identifies missing information, flags conflicting incident dates, assigns an initial triage category, and recommends next steps.
+An AI-assisted insurance claims intake and triage application designed to streamline the initial claim review process through structured information extraction, document comparison, missing-information detection and discrepancy identification.
 
-## Features
-- Claim-type and incident-type classification using a transparent baseline.
-- Extraction of explicitly stated policy number, dates, time, location, claimant name, and vehicle registration where recognizable.
-- Supporting-document mentions (a mention is not treated as proof that a file was reviewed).
-- Missing-field checklist.
-- Source-labelled contradiction detection for dates.
-- JSON output download.
-- Clear distinction between claimant-provided information and system inferences/recommendations.
-- 20 synthetic test cases and a reproducible evaluation script.
+## Overview
 
-## Run locally
-Python 3.10+ recommended.
+Processing insurance claims often involves reviewing unstructured descriptions, checking supporting documents, identifying missing information and verifying whether the details provided across different sources are consistent.
+
+**ClaimPilot** aims to simplify this initial process by providing a centralised workspace where users can submit claim information, analyse supporting documents and review an organised triage summary.
+
+The application uses Google's Gemini API to assist with claim analysis and presents the results through an interactive Streamlit interface.
+
+It is designed as a decision-support tool for human reviewers, not as an automated claim approval or rejection system.
+
+## Key Features
+
+### 1. Claim Information Intake
+- Accepts natural-language descriptions of insurance incidents.
+- Provides a structured workspace for entering claim information.
+- Supports the use of sample claims for demonstration and testing.
+
+### 2. Supporting Document Analysis
+- Demonstrates claim analysis using supporting sample documents.
+- Uses document information alongside the claim description.
+- Helps compare details across different sources.
+
+### 3. AI-Assisted Claim Classification
+- Analyses the submitted claim and identifies its likely category.
+- Supports categories such as:
+  - Motor Insurance
+  - Health Insurance
+  - Property Insurance
+  - Travel Insurance
+  - Other / Unknown
+
+### 4. Structured Information Extraction
+Organises relevant information into structured fields, such as:
+- Claimant details
+- Policy information
+- Incident date and time
+- Incident location
+- Vehicle or asset identification
+- Incident description
+
+### 5. Missing Information Detection
+Identifies information that may be required for further claim processing and highlights potential gaps in the submitted details.
+
+### 6. Discrepancy Identification
+Compares information available across the claim description and supporting documents to identify possible inconsistencies, such as conflicting incident dates.
+
+### 7. Triage Summary
+Presents an organised overview of the analysis, including:
+- Claim classification
+- Extracted information
+- Missing information
+- Potential conflicts
+- Recommended next steps
+
+### 8. Human Review Support
+Keeps the final assessment with a human reviewer. AI-generated findings are intended to assist investigation and verification rather than replace professional judgement.
+
+## Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| Python | Core application logic |
+| Streamlit | Interactive web application and user interface |
+| Google Gemini API | AI-assisted claim analysis |
+| Google Gen AI SDK | Communication with Gemini models |
+| HTML / CSS | Interface styling and visual customisation |
+| JSON | Structured data and evaluation records |
+| Git & GitHub | Version control and project management |
+
+## Application Workflow
+
+The application follows a simple claims-intake workflow:
+
+1. **Input:** The user provides a claim description.
+2. **Document Collection:** Supporting information or sample documents are made available.
+3. **Analysis:** The application processes the available claim information using the configured Gemini model.
+4. **Extraction:** Relevant claim details are organised into structured fields.
+5. **Validation:** Missing information and potential inconsistencies are identified.
+6. **Triage:** A structured summary and recommended follow-up actions are presented.
+7. **Human Review:** A reviewer examines the results and determines the appropriate next steps.
+
+## Project Structure
+
+```text
+ClaimPilot/
+│
+├── app.py
+│   └── Main Streamlit application
+│
+├── style.css
+│   └── Custom application styling
+│
+├── evaluate.py
+│   └── Evaluation script
+│
+├── sample_claims.json
+│   └── Synthetic sample claim dataset
+│
+├── evaluation_results.json
+│   └── Sample evaluation results
+│
+├── failure_cases.md
+│   └── Documented limitations and failure scenarios
+│
+├── input_output_schema.json
+│   └── Input and output structure
+│
+├── prompt_experiments.json
+│   └── Prompt experimentation notes
+│
+├── requirements.txt
+│   └── Python dependencies
+│
+├── .gitignore
+│   └── Files excluded from version control
+│
+└── README.md
+    └── Project documentation
+```
+
+*The project structure may be updated as additional features are introduced.*
+
+## Installation and Setup
+
+Follow these steps to run ClaimPilot locally.
+
+### Prerequisites
+
+- Python 3.10 or later
+- Git
+- A Google Gemini API key
+- Visual Studio Code (recommended)
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/suranjanaforge/claims-intake-triage-assistant.git
+```
+
+Navigate into the project directory:
+
+```bash
+cd YOUR-REPOSITORY
+```
+
+### 2. Create a Virtual Environment
 
 ```bash
 python -m venv .venv
-# Windows:
-.venv\Scripts\activate
-# macOS/Linux:
-source .venv/bin/activate
-pip install -r requirements.txt
-streamlit run app.py
 ```
 
-## Use
-Paste a synthetic claim description in the app and click **Analyze claim**. For contradictions, label sources explicitly, for example:
+Activate it on Windows PowerShell:
 
-```text
-Claim form: Accident date = 12 Sept 2026. Policy number: POL-2048.
-Email: Accident date = 13 Sept 2026. Photos available.
+```powershell
+.venv\Scripts\Activate.ps1
 ```
 
-The app should flag the dates rather than silently choosing one.
-
-## Project structure
-- `app.py` — Streamlit application and extraction baseline.
-- `sample_claims.json` — 20 synthetic test claims with expected properties.
-- `evaluate.py` — runs the test cases and reports basic metrics.
-- `input_output_schema.json` — input and output schema reference.
-- `prompt_experiments.md` — prompt design and experiment notes for a future LLM-backed version.
-- `evaluation_results.json` — baseline evaluation results from `evaluate.py`.
-- `failure_cases.md` — limitations and improvement plan.
-
-## Evaluation
-Run:
+### 3. Install Dependencies
 
 ```bash
-python evaluate.py
+pip install -r requirements.txt
 ```
 
-The test suite checks broad claim-type detection and whether known contradictory dates are flagged. It is a small smoke-test suite, not a statistically representative benchmark. See `evaluation_results.json` for the measured result.
+### 4. Configure the Gemini API Key
 
-## Design choices and limitations
-This initial version uses deterministic Python rules rather than a live LLM API, so it runs without an API key and produces reproducible results. Its extraction coverage is limited; dates in ambiguous formats, implicit details, synonyms, and multi-source inconsistencies other than dates may be missed. It should not be used for automated claim approval, denial, fraud accusations, liability determination, or coverage decisions. A human claims professional must review outputs.
+Create a folder named `.streamlit` in the project directory.
 
-## Privacy and responsible use
-- Use only synthetic or public data in this repository.
-- Do not commit customer names, policy numbers, medical records, claim documents, or other personal data.
-- The triage label is an intake workflow suggestion, not a decision about eligibility, liability, or payment.
-- The system must not invent missing values. Missing values are represented as `null` or listed under `missing_information`.
-- Source text and system-generated classifications/recommendations are labelled separately.
+Inside it, create a file named `secrets.toml`:
 
-## AI usage disclosure
-AI assistance was used to help design and draft the application, documentation, synthetic test cases, schema, and evaluation scaffolding. The submitted implementation uses transparent rule-based extraction and validation rather than calling an external generative AI service. All claim examples are synthetic.
+```toml
+GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"
+```
+
+Replace the placeholder with your actual API key.
+
+**Important:** Never commit your API key, `.env` file or `secrets.toml` to GitHub.
+
+### 5. Run the Application
+
+```bash
+python -m streamlit run app.py
+```
+
+The application will open in your browser, usually at:
+
+```text
+http://localhost:8501
+```
+
+## Evaluation and Testing
+
+The project includes a small synthetic dataset and an evaluation script to assess selected claim-analysis behaviours.
+
+The evaluation resources include:
+
+- `sample_claims.json` – Synthetic test cases.
+- `evaluate.py` – Script used to run the evaluation.
+- `evaluation_results.json` – Recorded evaluation results.
+- `failure_cases.md` – Known limitations and documented failure scenarios.
+
+The evaluation focuses on claim-type classification and conflict detection.
+
+These results are intended as preliminary testing and should not be interpreted as production-level performance benchmarks.
+
+## Limitations and Future Improvements
+
+ClaimPilot is a demonstration-stage application. Some areas that can be improved include:
+
+- More comprehensive document parsing and OCR support.
+- Improved extraction from varied document formats.
+- Detection of inconsistencies across additional claim fields.
+- Better handling of ambiguous and relative dates.
+- Expanded labelled datasets for more reliable evaluation.
+- More detailed field-level evidence tracing.
+- User authentication and role-based access.
+- Audit logs and reviewer feedback mechanisms.
+- Improved error handling and model fallback mechanisms.
+
+## Responsible AI and Data Privacy
+
+ClaimPilot is designed to support human decision-making.
+
+- Synthetic data should be used for demonstrations and testing.
+- Real customer information should not be entered into an unsecured demonstration environment.
+- AI-generated classifications and extracted information must be verified.
+- Potential discrepancies should be treated as review flags, not proof of fraud.
+- The application does not make final decisions regarding claim approval, rejection, liability, fraud, policy coverage or payouts.
+
+## Project Objective
+
+The objective of ClaimPilot is to demonstrate how AI-assisted information extraction, structured data processing and discrepancy identification can improve the initial stages of insurance claims handling.
+
+By bringing claim information and supporting evidence into one organised interface, the project aims to make preliminary claim review more efficient, transparent and easier to manage.
+
+---
+
+**Developed as an academic project in Artificial Intelligence and Software Development.**
+
+*ClaimPilot – Making Claims Intake More Structured, Transparent and Efficient.*
